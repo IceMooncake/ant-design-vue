@@ -8,6 +8,12 @@
         {{ item.title }}
       </template>
     </a-anchor>
+    <a v-if="isAdVisible" :href="'https://mentorbook.ai'" target="_blank" style="">
+      <img
+        :src="isZhCN ? '/MPU_176x250_bf_zh.svg' : '/MPU_176x250_bf_en.svg'"
+        style="width: 152px; display: block; margin-top: 16px"
+      />
+    </a>
   </div>
   <div class="main-wrapper">
     <a-row>
@@ -251,6 +257,12 @@ export default defineComponent({
         'main-container-component': isDemo.value,
       };
     });
+    const isAdVisible = computed(() => {
+      const now = new Date();
+      const startDate = new Date('2025-11-24T00:00:00');
+      const endDate = new Date('2025-11-30T23:59:59');
+      return now >= startDate && now <= endDate;
+    });
     const handleClickShowButton = () => {
       visible.value = !visible.value;
     };
@@ -269,6 +281,7 @@ export default defineComponent({
       pageData,
       dataSource,
       handleClickShowButton,
+      isAdVisible,
       iconStyle: {
         // color: '#fff',
         fontSize: '20px',
