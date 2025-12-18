@@ -54,9 +54,12 @@ export function getTargetScrollBarSize(target: HTMLElement) {
     return { width: 0, height: 0 };
   }
 
+  const hasVertical = target.scrollHeight > target.clientHeight;
+  const hasHorizontal = target.scrollWidth > target.clientWidth;
+
   const { width, height } = getComputedStyle(target, '::-webkit-scrollbar');
   return {
-    width: ensureSize(width),
-    height: ensureSize(height),
+    width: hasVertical ? ensureSize(width) : 0,
+    height: hasHorizontal ? ensureSize(height) : 0,
   };
 }

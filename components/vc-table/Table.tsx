@@ -379,7 +379,7 @@ export default defineComponent({
     watchEffect(() => {
       if (fixHeader.value) {
         scrollYStyle.value = {
-          overflowY: 'scroll',
+          overflowY: 'auto',
           maxHeight: toPx(props.scroll.y),
         };
       }
